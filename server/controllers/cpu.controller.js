@@ -1,7 +1,7 @@
 const Cpu = require('../models/cpu.model');
 
 module.exports.createNewCpu = async (req, res) => {
-    console.log("You got this far lol -controller");
+    console.log("controller: Attempting to create cpu");
     try {
         const {name, brand, coreCount, clockSpeed, powerDraw, price } = req.body;
 
