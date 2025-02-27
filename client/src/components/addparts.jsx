@@ -19,7 +19,8 @@ const CpuForm = () => {
         // }
         const handleSubmit = (e) => {
                 // if (formValidator()){
-                axios.post('http://localhost:8000/api/cpus', {
+                // e.preventDefault();
+                axios.post('http://localhost:8000/api/cpus/', {
                         name, brand, coreCount, clockSpeed, powerDraw, price
                 })
                         .then(res => {

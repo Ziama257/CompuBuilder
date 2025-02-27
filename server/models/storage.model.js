@@ -10,16 +10,12 @@ brand: {
     type: String
 },
 
-coreCount: {
+size: {
     type: Number
 },
 
-clockSpeed: {
-    type: Number 
-},
-
-powerDraw: {
-    type: Number
+type: {
+    type: String
 },
 
 price: {

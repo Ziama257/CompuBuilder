@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CpuSchema = new mongoose.Schema({
+const GpuSchema = new mongoose.Schema({
 
 name: {
     type: String
@@ -10,7 +10,7 @@ brand: {
     type: String
 },
 
-coreCount: {
+vram: {
     type: Number
 },
 
@@ -28,6 +28,6 @@ price: {
 
 });
 
-const Cpu = mongoose.model('Cpus', CpuSchema);
+const Gpu = mongoose.model('Gpus', GpuSchema);
 
-module.exports = Cpu;
+module.exports = Gpu;

@@ -9,7 +9,7 @@ app.use(cors({
 }));
 
 
-
+require("./routes/compubuilder.routes")(app);
 require("./config/mongoose.config");
 
 app.listen(8000, ()=>console.log("Listening on Port 8000"))

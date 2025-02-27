@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CpuSchema = new mongoose.Schema({
+const RamSchema = new mongoose.Schema({
 
 name: {
     type: String
@@ -10,7 +10,7 @@ brand: {
     type: String
 },
 
-coreCount: {
+size: {
     type: Number
 },
 
@@ -18,9 +18,6 @@ clockSpeed: {
     type: Number 
 },
 
-powerDraw: {
-    type: Number
-},
 
 price: {
     type: Number
@@ -28,6 +25,6 @@ price: {
 
 });
 
-const Cpu = mongoose.model('Cpus', CpuSchema);
+const Ram = mongoose.model('Rams', RamSchema);
 
-module.exports = Cpu;
+module.exports = Ram;
