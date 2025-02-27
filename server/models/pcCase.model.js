@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CaseSchema = new mongoose.Schema({
+const PcCaseSchema = new mongoose.Schema({
 
 name: {
     type: String
@@ -20,6 +20,6 @@ price: {
 
 });
 
-const Case = mongoose.model('Cases', CaseSchema);
+const PcCase = mongoose.model('PcCases', PcCaseSchema);
 
-module.exports = Case;
+module.exports = PcCase;
