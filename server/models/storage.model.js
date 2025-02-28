@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CpuSchema = new mongoose.Schema({
+const StorageSchema = new mongoose.Schema({
 
 name: {
     type: String
@@ -24,6 +24,6 @@ price: {
 
 });
 
-const Cpu = mongoose.model('Cpus', CpuSchema);
+const Storage = mongoose.model('Storages', StorageSchema);
 
-module.exports = Cpu;
+module.exports = Storage;
