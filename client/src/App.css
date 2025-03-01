@@ -68,4 +68,22 @@ img{
   font-family: var(--main-font);
   padding-top: 5%;
 }
+.dropdown-select {
+  width: 100%;
+  padding-right: 30px;
+  appearance: none;
+  cursor: pointer;
+}
 
+.dropdown-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.3s;
+}
+
+.dropdown-arrow.open {
+  transform: translateY(-50%) rotate(180deg);
+}

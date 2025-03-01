@@ -18,9 +18,9 @@ module.exports.getRamByName = async (req, res) => {
 module.exports.createNewRam = async (req, res) => {
     console.log("controller: Attempting to create ram");
     try {
-        const {name, brand, size, clockSpeed, price } = req.body;
+        const {name, brand, size, clockSpeed, price, image } = req.body;
 
-        const newRam = await Ram.create({ name, brand, size, clockSpeed, price});
+        const newRam = await Ram.create({ name, brand, size, clockSpeed, price, image});
 
         res.json(newRam);
     } catch (error) {

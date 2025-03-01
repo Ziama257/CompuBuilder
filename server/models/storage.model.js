@@ -20,6 +20,10 @@ type: {
 
 price: {
     type: Number
+},
+
+image: {
+    type: String
 }
 
 });

@@ -18,9 +18,9 @@ module.exports.getPcCaseByName = async (req, res) => {
 module.exports.createNewPcCase = async (req, res) => {
     console.log("controller: Attempting to create pcPcCase");
     try {
-        const {name, brand, size, price } = req.body;
+        const {name, brand, size, price, image } = req.body;
 
-        const newPcCase = await PcCase.create({ name, brand, size, price});
+        const newPcCase = await PcCase.create({ name, brand, size, price, image});
 
         res.json(newPcCase);
     } catch (error) {

@@ -14,8 +14,8 @@ app.get("/api/cpus/:id", cpuController.getCpuByName);
 app.post("/api/cases", pcCaseController.createNewPcCase);
 app.get("/api/cases/:id", pcCaseController.getPcCaseByName);
 //cooling routes
-app.post("/api/cooling", coolingController.createNewCooling);
-app.get("/api/cooling/:id", coolingController.getCoolingByName);
+app.post("/api/coolings", coolingController.createNewCooling);
+app.get("/api/coolings/:id", coolingController.getCoolingByName);
 //gpu routes
 app.post("/api/gpus", gpuController.createNewGpu);
 app.get("/api/gpus/:id", gpuController.getGpuByName);

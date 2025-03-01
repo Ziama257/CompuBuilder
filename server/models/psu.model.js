@@ -17,6 +17,10 @@ watts: {
 
 price: {
     type: Number
+},
+
+image: {
+    type: String
 }
 
 });

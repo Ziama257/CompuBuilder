@@ -24,6 +24,10 @@ socket: {
 
 price: {
     type: Number
+},
+
+image: {
+    type: String
 }
 
 });

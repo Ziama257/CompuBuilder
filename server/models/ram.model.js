@@ -21,6 +21,10 @@ clockSpeed: {
 
 price: {
     type: Number
+},
+
+image: {
+    type: String
 }
 
 });

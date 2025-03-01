@@ -18,9 +18,9 @@ module.exports.getCpuByName = async (req, res) => {
 module.exports.createNewCpu = async (req, res) => {
     console.log("controller: Attempting to create cpu");
     try {
-        const {name, brand, coreCount, clockSpeed, powerDraw, price } = req.body;
+        const {name, brand, coreCount, clockSpeed, powerDraw, price, image } = req.body;
 
-        const newCpu = await Cpu.create({ name, brand, coreCount, clockSpeed, powerDraw, price});
+        const newCpu = await Cpu.create({ name, brand, coreCount, clockSpeed, powerDraw, price, image});
 
         res.json(newCpu);
     } catch (error) {

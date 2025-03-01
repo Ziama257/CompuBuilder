@@ -18,9 +18,9 @@ module.exports.getPsuByName = async (req, res) => {
 module.exports.createNewPsu = async (req, res) => {
     console.log("controller: Attempting to create psu");
     try {
-        const {name, brand, watts, price } = req.body;
+        const {name, brand, watts, price, image } = req.body;
 
-        const newPsu = await Psu.create({ name, brand, watts, price});
+        const newPsu = await Psu.create({ name, brand, watts, price, image});
 
         res.json(newPsu);
     } catch (error) {

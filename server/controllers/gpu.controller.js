@@ -18,9 +18,9 @@ module.exports.getGpuByName = async (req, res) => {
 module.exports.createNewGpu = async (req, res) => {
     console.log("controller: Attempting to create gpu");
     try {
-        const {name, brand, vram, clockSpeed, powerDraw, price } = req.body;
+        const {name, brand, vram, clockSpeed, powerDraw, price, image } = req.body;
 
-        const newGpu = await Gpu.create({ name, brand, vram, clockSpeed, powerDraw, price});
+        const newGpu = await Gpu.create({ name, brand, vram, clockSpeed, powerDraw, price, image});
 
         res.json(newGpu);
     } catch (error) {

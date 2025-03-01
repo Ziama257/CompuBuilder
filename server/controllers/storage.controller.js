@@ -18,9 +18,9 @@ module.exports.getStorageByName = async (req, res) => {
 module.exports.createNewStorage = async (req, res) => {
     console.log("controller: Attempting to create storage");
     try {
-        const {name, brand, size, type, price } = req.body;
+        const {name, brand, size, type, price, image } = req.body;
 
-        const newStorage = await Storage.create({ name, brand, size, type, price});
+        const newStorage = await Storage.create({ name, brand, size, type, price, image});
 
         res.json(newStorage);
     } catch (error) {
