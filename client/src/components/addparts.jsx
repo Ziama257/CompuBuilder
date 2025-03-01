@@ -41,7 +41,7 @@ const PartForm = () => {
 
                         {componentAttributes[partType].map((attribute) => (
                                 <div key={attribute} className="form-group mt-3">
-                                        <label className="form-label">{attribute}</label>
+                                        <label className="form-label">{attribute.toUpperCase()}</label>
                                         <input
                                                 type="text"
                                                 className="form-control"
