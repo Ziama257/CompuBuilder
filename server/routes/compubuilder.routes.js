@@ -6,13 +6,14 @@ const mbController = require("../controllers/mb.controller");
 const psuController = require("../controllers/psu.controller");
 const ramController = require("../controllers/ram.controller");
 const storageController = require("../controllers/storage.controller");
+const buildController = require("../controllers/build.controller");
 module.exports = (app) => {
 //cpu routes
 app.post("/api/cpus", cpuController.createNewCpu);
 app.get("/api/cpus/:id", cpuController.getCpuByName);
 //case routes
-app.post("/api/cases", pcCaseController.createNewPcCase);
-app.get("/api/cases/:id", pcCaseController.getPcCaseByName);
+app.post("/api/PcCases", pcCaseController.createNewPcCase);
+app.get("/api/PcCases/:id", pcCaseController.getPcCaseByName);
 //cooling routes
 app.post("/api/coolings", coolingController.createNewCooling);
 app.get("/api/coolings/:id", coolingController.getCoolingByName);
@@ -31,5 +32,7 @@ app.get("/api/rams/:id", ramController.getRamByName);
 //storage routes
 app.post("/api/storages", storageController.createNewStorage);
 app.get("/api/storages/:id", storageController.getStorageByName);
+//build generator routes
+app.post("/api/builds/generate", buildController.buildPC);
 
 }

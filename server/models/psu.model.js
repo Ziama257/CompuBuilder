@@ -10,7 +10,6 @@ brand: {
     type: String
 },
 
-
 watts: {
     type: Number
 },

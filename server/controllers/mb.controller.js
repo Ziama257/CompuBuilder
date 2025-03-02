@@ -18,9 +18,9 @@ module.exports.getMbByName = async (req, res) => {
 module.exports.createNewMb = async (req, res) => {
     console.log("controller: Attempting to create mb");
     try {
-        const {name, brand, wifi,pcieSlots, socket, price, image } = req.body;
+        const {name, brand, wifi,slots, socket, price, image } = req.body;
 
-        const newMb = await Mb.create({ name, brand, wifi,pcieSlots, socket, price, image});
+        const newMb = await Mb.create({ name, brand, wifi,slots, socket, price, image});
 
         res.json(newMb);
     } catch (error) {

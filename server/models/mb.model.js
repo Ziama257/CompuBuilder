@@ -14,7 +14,7 @@ wifi: {
     type: String
 },
 
-pcieSlots: {
+slots: {
     type: Number
 },
 

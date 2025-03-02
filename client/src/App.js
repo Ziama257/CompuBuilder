@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import PartForm from './components/addparts';
+import BuildDisplay from './components/compubuilderScreen';
 
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route element = {<PartForm/>} path = '/' default/>
+        <Route element = {<BuildDisplay/>} path = '/' default/>
+        <Route element = {<PartForm/>} path = '/newparts'/>
       </Routes>
       </BrowserRouter>
     </div>

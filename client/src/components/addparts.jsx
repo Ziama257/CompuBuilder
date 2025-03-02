@@ -5,7 +5,7 @@ const componentAttributes = {
         cooling: ["name", "brand", "type", "price", "image"],
         cpu: ["name", "brand", "coreCount", "clockSpeed", "powerDraw", "price", "socket", "image"],
         gpu: ["name", "brand", "vram", "clockSpeed", "powerDraw", "price", "image"],
-        mb: ["name", "brand", "wifi", "pcieSlots", "socket", "price", "image"],
+        mb: ["name", "brand", "wifi", "slots", "socket", "price", "image"],
         PcCase: ["name", "brand", "size", "price", "image"],
         psu: ["name", "brand", "watts", "price", "image"],
         ram: ["name", "brand", "size", "clockSpeed", "price", "image"],

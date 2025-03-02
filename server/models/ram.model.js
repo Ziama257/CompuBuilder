@@ -15,7 +15,7 @@ size: {
 },
 
 clockSpeed: {
-    type: Number 
+    type: String 
 },
 
 
