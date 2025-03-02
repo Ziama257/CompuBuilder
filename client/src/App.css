@@ -87,3 +87,8 @@ img{
 .dropdown-arrow.open {
   transform: translateY(-50%) rotate(180deg);
 }
+
+#caseImg {
+  margin-top: -12%;
+  margin-bottom: 50px;
+}

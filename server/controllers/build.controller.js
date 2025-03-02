@@ -12,9 +12,34 @@ const buildPC = async (req, res) => {
         const { budget, usage } = req.body;
 
         const budgetAllocation = {
-            gaming: { cpu: 0.25, gpu: 0.35, mb: 0.10, ram: 0.10, storage: 0.05, psu: 0.10, cooling: 0.05, case: 0.05 }, // Add case to allocation
-            editing: { cpu: 0.30, gpu: 0.30, mb: 0.10, ram: 0.10, storage: 0.10, psu: 0.10, case: 0.05 },
-            workstation: { cpu: 0.40, gpu: 0.20, mb: 0.10, ram: 0.10, storage: 0.10, psu: 0.10, case: 0.05 }
+            gaming: {
+                cpu: 0.25,    
+                gpu: 0.35,    
+                mb: 0.05,
+                ram: 0.05,
+                storage: 0.05,
+                psu: 0.15,    
+                cooling: 0.05, 
+                case: 0.10     
+            },
+            editing: {
+                cpu: 0.25,    
+                gpu: 0.30,    
+                mb: 0.10,
+                ram: 0.05,
+                storage: 0.15, 
+                psu: 0.10,    
+                case: 0.05     
+            },
+            workstation: {
+                cpu: 0.45,    
+                gpu: 0.20,    
+                mb: 0.10,
+                ram: 0.10,
+                storage: 0.05, 
+                psu: 0.05,    
+                case: 0.05     
+            }
         };
 
         if (!budgetAllocation[usage]) return res.status(400).json({ error: "Invalid usage type" });
@@ -58,7 +83,7 @@ const buildPC = async (req, res) => {
 
         const cooling = await findBestPart(Cooling, { price: -1 }, allocatedBudget.cooling);
 
-        const pcCase = await findBestPart(PCCase, { price: 1 }, allocatedBudget.case); 
+        const pcCase = await findBestPart(PCCase, { price: -1 }, allocatedBudget.case); 
 
         // Ensure DDR5 RAM is compatible
         if (ram.clockSpeed.includes("DDR5") && !["AM5", "LGA1700"].includes(mb.socket)) {

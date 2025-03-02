@@ -79,7 +79,16 @@ const BuildDisplay = () => {
             {/* Display Generated Build */}
             {build && step === 4 && (
                 <div className="mt-4">
-                    <h3>{name}'s Build</h3> {/* Display user's name */}
+                    <h3>{name}'s Build:<br/>${budget.toFixed(2)} Budget</h3>
+                    <div id = "caseImg">
+                        {build.pcCase && build.pcCase.image && (
+                            <img 
+                                src={build.pcCase.image} 
+                                alt={build.pcCase.name} 
+                                style={{ width: '200px', height: 'auto', marginRight: '20px' }}
+                            />
+                        )}
+                </div>
                     <table className="table table-bordered">
                         <thead>
                             <tr>
@@ -97,7 +106,7 @@ const BuildDisplay = () => {
                                         <td>{key.toUpperCase()}</td>
                                         <td>{value.brand}</td>
                                         <td>{value.name}</td>
-                                        <td>{value.price}</td>
+                                        <td>${value.price.toFixed(2)}</td>
                                     </tr>
                                 ) : (
                                     <tr key={key}>
@@ -106,6 +115,12 @@ const BuildDisplay = () => {
                                     </tr>
                                 )
                             ))}
+                            <tr>
+                                <td colSpan="3" style={{ textAlign: 'right' }}>Total:</td>
+                                <td>
+                                    ${Object.values(build).reduce((total, component) => component ? total + component.price : total, 0).toFixed(2)}
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
