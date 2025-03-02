@@ -26,6 +26,10 @@ price: {
     type: Number
 },
 
+socket:{
+    type: String
+},
+
 image: {
     type: String
 }

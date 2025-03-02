@@ -13,8 +13,6 @@ module.exports.getCoolingByName = async (req, res) => {
     }
     };
 
-
-
 module.exports.createNewCooling = async (req, res) => {
     console.log("controller: Attempting to create cooling");
     try {
