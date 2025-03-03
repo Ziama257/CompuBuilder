@@ -60,7 +60,7 @@ img{
   --light-gray: #eaeaea;
   --dark-gray: #222;*/
   --font-stack: 'Oswald', sans-serif; 
-  --main-font: 'Roboto', sans-serif; 
+  --main-font: 'Roboto', sans-serif;
 }
 
 .App {
@@ -88,7 +88,81 @@ img{
   transform: translateY(-50%) rotate(180deg);
 }
 
+h1{
+  font-size: 41px;
+  font-weight:375;
+}
+h2{
+  margin-top: 17px;
+
+}
+h2 span{
+  text-decoration: underline;
+}
+
+label{
+  font-weight: thin;
+  font-size: large;
+}
+
 #caseImg {
-  margin-top: -12%;
-  margin-bottom: 50px;
+  margin-top: 45px;
+  margin-right: 8%;
+  margin-left: 20%;
+}
+
+
+.form-group{
+  margin-top: 12%;
+}
+
+.form-control{
+  margin-top: 13px;
+  /* max-width: 200px; */
+  justify-self: center;
+  align-self: center;
+}
+
+.btn-primary{
+  background-color: #4a9ecf;
+  margin-bottom: 133px;
+}
+
+.table-striped td{
+  color: whitesmoke !important;
+}
+td{
+  text-align: left;
+  color: whitesmoke;
+}
+
+th{
+  text-align: left;
+  color: whitesmoke
+}
+
+
+@media screen and (min-width: 450px) {
+  .form-control{
+    max-width: 200px;
+  }
+}
+@media screen and (max-width: 450px){
+  .container{
+    margin-top: 20%;
+  }
+  #caseImg{
+    margin: auto;
+    margin-left: -8%;
+  }
+  h1{
+    margin-left: 10%;
+  }
+  h2{
+    margin-left: 10%;
+  }
+  h3{
+    margin-left: 10%;
+  }
+
 }

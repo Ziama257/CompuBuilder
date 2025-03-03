@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PartDetailsTable from "../components/partdetails";
 import axios from "axios";
 
 const BuildDisplay = () => {
@@ -8,6 +9,7 @@ const BuildDisplay = () => {
     const [usage, setUsage] = useState("gaming");  // Store intended use
     const [build, setBuild] = useState(null);  // Store the generated build
     const [error, setError] = useState(null);  // Store error message
+    const [showDetails, setShowDetails] = useState(false)
 
     const handleGenerateBuild = async () => {
         try {
@@ -21,11 +23,14 @@ const BuildDisplay = () => {
             setBuild(null);  // Reset build if error occurs
         }
     };
+    const handleBack = () => {
+        if (step > 1) setStep(step - 1);
+    };
 
     return (
         <div className="container">
-            <h2>Generate PC Build</h2>
-
+            <h1>CompuBuilder</h1>
+            <h2>Start your PC build on <span>your</span> terms!</h2>
             {/* Step 1: Name Input */}
             {step === 1 && (
                 <div className="form-group">
@@ -37,15 +42,19 @@ const BuildDisplay = () => {
                         onChange={(e) => setName(e.target.value)}
                     />
                     <button className="btn btn-primary mt-3" onClick={() => setStep(2)}>
-                        Next
+                        let's get started
                     </button>
+                    <div className="progress mt-3">
+                        <div className="progress-bar" aria-valuenow= {step} aria-valuemin= "1"  aria-valuemax = "4" aria-label={"Step ${step} of 4"} role="progressbar" style={{ width: `${((step -1) / 3) * 100}%` }}></div>
+                    </div>
                 </div>
+                
             )}
 
             {/* Step 2: Budget Input */}
             {step === 2 && (
                 <div className="form-group">
-                    <label>Budget ($)</label>
+                    <label>What's the budget for your build?</label>
                     <input
                         type="number"
                         className="form-control"
@@ -53,23 +62,32 @@ const BuildDisplay = () => {
                         onChange={(e) => setBudget(parseInt(e.target.value))}
                     />
                     <button className="btn btn-primary mt-3" onClick={() => setStep(3)}>
-                        Next
+                        what's next?
                     </button>
+                    <div className="progress mt-3">
+                        <div className="progress-bar" aria-valuenow= {step} aria-valuemin= "1"  aria-valuemax = "4" aria-label={"Step ${step} of 4"} role="progressbar" style={{ width: `${((step -1) / 3) * 100}%` }}></div>
+                    </div>
+                    <button className="btn btn-secondary mt-3" onClick={handleBack}>back</button>
                 </div>
             )}
 
             {/* Step 3: Intended Use Selection */}
             {step === 3 && (
                 <div className="form-group">
-                    <label>Intended Use</label>
+                    <label>What are you building for?</label>
                     <select className="form-control" value={usage} onChange={(e) => setUsage(e.target.value)}>
                         <option value="gaming">Gaming</option>
                         <option value="editing">Editing</option>
                         <option value="workstation">Workstation</option>
                     </select>
+                    
                     <button className="btn btn-primary mt-3" onClick={handleGenerateBuild}>
-                        Generate Build
+                        build my PC
                     </button>
+                    <div className="progress mt-3">
+                        <div className="progress-bar" aria-valuenow= {step} aria-valuemin= "1"  aria-valuemax = "4" aria-label={"Step ${step} of 4"} role="progressbar" style={{ width: `${((step-1) / 3) * 100}%` }}></div>
+                    </div>
+                    <button className="btn btn-secondary mt-3" onClick={handleBack}>back</button>
                 </div>
             )}
 
@@ -79,50 +97,61 @@ const BuildDisplay = () => {
             {/* Display Generated Build */}
             {build && step === 4 && (
                 <div className="mt-4">
-                    <h3>{name}'s Build:<br/>${budget.toFixed(2)} Budget</h3>
-                    <div id = "caseImg">
-                        {build.pcCase && build.pcCase.image && (
-                            <img 
-                                src={build.pcCase.image} 
-                                alt={build.pcCase.name} 
-                                style={{ width: '200px', height: 'auto', marginRight: '20px' }}
-                            />
-                        )}
-                </div>
-                    <table className="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Component</th>
-                                <th>Brand</th>
-                                <th>Name</th>
-                                <th>Price ($)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {/* Iterate through the build and display components */}
-                            {Object.entries(build).map(([key, value]) => (
-                                value ? (
-                                    <tr key={key}>
-                                        <td>{key.toUpperCase()}</td>
-                                        <td>{value.brand}</td>
-                                        <td>{value.name}</td>
-                                        <td>${value.price.toFixed(2)}</td>
-                                    </tr>
-                                ) : (
-                                    <tr key={key}>
-                                        <td>{key.toUpperCase()}</td>
-                                        <td colSpan="2">Not included</td>
-                                    </tr>
-                                )
-                            ))}
-                            <tr>
-                                <td colSpan="3" style={{ textAlign: 'right' }}>Total:</td>
-                                <td>
-                                    ${Object.values(build).reduce((total, component) => component ? total + component.price : total, 0).toFixed(2)}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h3>{name}, take a look at your recommended build, for around ${budget}.</h3>
+                    <div style={{ display: "flex", alignItems: "flex-start", marginTop: "50px"}}>
+                        <div id = "caseImg">
+                            {build.pcCase && build.pcCase.image && (
+                                <img 
+                                    src={build.pcCase.image} 
+                                    alt={build.pcCase.name} 
+                                    style={{ width: '200px', height: 'auto', marginRight: '20px' }}
+                                />
+                            )}
+                        </div>
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr style={{borderBottom: "2px solid black"}}>
+                                    <th>Component</th>
+                                    <th>Brand</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* Iterate through the build and display components */}
+                                {Object.entries(build).map(([key, value]) => (
+                                    value ? (
+                                        <tr key={key}>
+                                            <td>{key.toUpperCase()}</td>
+                                            <td>{value.brand} {value.name}</td>
+                                            <td>${value.price.toFixed(2)}</td>
+                                        </tr>
+                                    ) : (
+                                        <tr key={key}>
+                                            <td>{key.toUpperCase()}</td>
+                                            <td colSpan="2">Not included</td>
+                                        </tr>
+                                    )
+                                ))}
+                                <tr style={{borderTop: "2px solid black"}}>
+                                    
+                                    <td colSpan="2" style={{ textAlign: 'right' }}>Total:</td>
+                                    <td>
+                                        ${Object.values(build).reduce((total, component) => component ? total + component.price : total, 0).toFixed(2)}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button className="btn btn-secondary mt-3" onClick={handleBack}>Back</button>
+                    <button 
+                        className="btn btn-secondary mt-3" 
+                        onClick={() => setShowDetails(!showDetails)}
+                    >
+                        {showDetails ? "Hide Details" : "View Details"}
+                    </button>
+
+                    {/* Render PartDetailsTable only when showDetails is true */}
+                    {showDetails && <PartDetailsTable build={build} />}
                 </div>
             )}
         </div>
