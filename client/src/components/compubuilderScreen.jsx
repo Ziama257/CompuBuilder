@@ -3,24 +3,24 @@ import PartDetailsTable from "../components/partdetails";
 import axios from "axios";
 
 const BuildDisplay = () => {
-    const [step, setStep] = useState(1);  // Track the current form step
-    const [name, setName] = useState("");  // Store user's name
-    const [budget, setBudget] = useState(1000);  // Store budget input
-    const [usage, setUsage] = useState("gaming");  // Store intended use
-    const [build, setBuild] = useState(null);  // Store the generated build
-    const [error, setError] = useState(null);  // Store error message
+    const [step, setStep] = useState(1);  
+    const [name, setName] = useState("");  
+    const [budget, setBudget] = useState(1000);  
+    const [usage, setUsage] = useState("gaming");  
+    const [build, setBuild] = useState(null);  
+    const [error, setError] = useState(null);  
     const [showDetails, setShowDetails] = useState(false)
 
     const handleGenerateBuild = async () => {
         try {
-            // Make API call to generate the build
+            // API call to generate the build
             const response = await axios.post("http://10.0.0.14:8000/api/builds/generate", { budget, usage });
             setBuild(response.data);
-            setError(null);  // Reset error state
-            setStep(4);  // Move to the final step to display the build
+            setError(null);  
+            setStep(4);  
         } catch (err) {
             setError(err.response?.data?.error || "Error generating build");
-            setBuild(null);  // Reset build if error occurs
+            setBuild(null);  
         }
     };
     const handleBack = () => {
@@ -31,7 +31,7 @@ const BuildDisplay = () => {
         <div className="container">
             <h1>CompuBuilder</h1>
             <h2>Start your PC build on <span>your</span> terms!</h2>
-            {/* Step 1: Name Input */}
+            {/* step 1*/}
             {step === 1 && (
                 <div className="form-group">
                     <label>What's your name?</label>
@@ -51,7 +51,7 @@ const BuildDisplay = () => {
                 
             )}
 
-            {/* Step 2: Budget Input */}
+            {/* step 2 */}
             {step === 2 && (
                 <div className="form-group">
                     <label>What's the budget for your build?</label>
@@ -71,7 +71,7 @@ const BuildDisplay = () => {
                 </div>
             )}
 
-            {/* Step 3: Intended Use Selection */}
+            {/* step 3 */}
             {step === 3 && (
                 <div className="form-group">
                     <label>What are you building for?</label>
@@ -91,10 +91,7 @@ const BuildDisplay = () => {
                 </div>
             )}
 
-            {/* Display Error Message */}
             {error && <p className="text-danger mt-3">{error}</p>}
-
-            {/* Display Generated Build */}
             {build && step === 4 && (
                 <div className="mt-4">
                     <h3>{name}, take a look at your recommended build, for around ${budget}.</h3>
@@ -104,6 +101,7 @@ const BuildDisplay = () => {
                                 <img 
                                     src={build.pcCase.image} 
                                     alt={build.pcCase.name} 
+                                    class ={'rounded'}
                                     style={{ width: '200px', height: 'auto', marginRight: '20px' }}
                                 />
                             )}
@@ -117,7 +115,6 @@ const BuildDisplay = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* Iterate through the build and display components */}
                                 {Object.entries(build).map(([key, value]) => (
                                     value ? (
                                         <tr key={key}>
@@ -142,15 +139,13 @@ const BuildDisplay = () => {
                             </tbody>
                         </table>
                     </div>
-                    <button className="btn btn-secondary mt-3" onClick={handleBack}>Back</button>
+                    <button className="btn btn-secondary mt-3" id ="back-btn" onClick={handleBack}>Back</button>
                     <button 
                         className="btn btn-secondary mt-3" 
                         onClick={() => setShowDetails(!showDetails)}
                     >
                         {showDetails ? "Hide Details" : "View Details"}
                     </button>
-
-                    {/* Render PartDetailsTable only when showDetails is true */}
                     {showDetails && <PartDetailsTable build={build} />}
                 </div>
             )}

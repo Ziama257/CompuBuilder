@@ -52,13 +52,6 @@ img{
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  /* --dark-green: #166212;
-  --medium-green: #21941b;
-  --light-green: #afceb1;
-  --bright-green: #30d627;
-  --white: #fff;
-  --light-gray: #eaeaea;
-  --dark-gray: #222;*/
   --font-stack: 'Oswald', sans-serif; 
   --main-font: 'Roboto', sans-serif;
 }
@@ -127,6 +120,9 @@ label{
   background-color: #4a9ecf;
   margin-bottom: 133px;
 }
+#back-btn{
+  margin-right: 10px;
+}
 
 .table-striped td{
   color: whitesmoke !important;
@@ -140,6 +136,7 @@ th{
   text-align: left;
   color: whitesmoke
 }
+
 
 
 @media screen and (min-width: 450px) {

@@ -20,14 +20,11 @@ const PartDetailsTable = ({ build }) => {
                     {Object.entries(build).map(([key, value]) => 
                         value && partDetails[key] ? (
                             <React.Fragment key={key}>
-                                {/* Component Name as a header */}
                                 <tr>
                                     <td colSpan="3" style={{ fontWeight: 'bold', textAlign: 'center', height: '100px', paddingTop: '40px' }}>
                                         <h5>{key.toUpperCase()}</h5>
                                     </td>
                                 </tr>
-
-                                {/* Component Details */}
                                 {partDetails[key].map(detail => 
                                     value[detail] && (
                                         <tr key={`${key}-${detail}`}>
@@ -39,7 +36,6 @@ const PartDetailsTable = ({ build }) => {
                                                     value[detail]
                                                 )}
                                             </td>
-                                            {/* Image now in its own column */}
                                             <td>
                                                 {detail === "image" ? (
                                                     <a href={value[detail]} target="_blank" rel="noopener noreferrer">
