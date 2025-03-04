@@ -10,7 +10,7 @@ const PCCase = require("../models/pcCase.model");
 const buildPC = async (req, res) => {
     try {
         const { budget, usage } = req.body;
-
+        //allocate budget to balance the overall build quality for each use case
         const budgetAllocation = {
             gaming: {
                 cpu: 0.25,    
@@ -49,17 +49,17 @@ const buildPC = async (req, res) => {
             allocatedBudget[component] = budget * budgetAllocation[usage][component];
         });
 
-        // Helper function to find the best component within budget
+
         const findBestPart = async (Model, sortCriteria, budgetLimit, extraFilter = {}) => {
             let part = await Model.findOne({ price: { $lte: budgetLimit }, ...extraFilter }).sort(sortCriteria);
             if (!part) {
-                // If no part is found in budget, get the closest match
+                // gets the closest match if no part is found within allocated budget
                 part = await Model.findOne({ ...extraFilter }).sort({ price: 1 });
             }
             return part;
         };
 
-        // Select parts based on budget and priority
+        // assign parts based on budget and priority
         const cpu = await findBestPart(CPU, { clockSpeed: -1, coreCount: usage === "workstation" ? -1 : -1 }, allocatedBudget.cpu);
         const mb = await findBestPart(Motherboard, { price: 1 }, allocatedBudget.mb, { socket: cpu.socket });
 
@@ -76,7 +76,7 @@ const buildPC = async (req, res) => {
         );
 
         const storage = await findBestPart(Storage, { size: -1 }, allocatedBudget.storage, { type: "SSD" });
-
+        // ensure psu can power cpu gpu and other parts
         const psu = await findBestPart(PSU, { watts: -1 }, allocatedBudget.psu, {
             watts: { $gte: cpu.powerDraw + gpu.powerDraw + 100 }
         });
@@ -85,7 +85,7 @@ const buildPC = async (req, res) => {
 
         const pcCase = await findBestPart(PCCase, { price: -1 }, allocatedBudget.case); 
 
-        // Ensure DDR5 RAM is compatible
+        // ensure ram compatiblity
         if (ram.clockSpeed.includes("DDR5") && !["AM5", "LGA1700"].includes(mb.socket)) {
             ram = await findBestPart(RAM, { size: -1, clockSpeed: -1 }, allocatedBudget.ram, { clockSpeed: { $not: /DDR5/ } });
         }
